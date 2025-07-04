@@ -39,6 +39,9 @@ class Controller:
         self._view.txt_result1.controls.append(ft.Text("Grafo costruito correttamente"))
         self._view.txt_result1.controls.append(ft.Text(f"Numero di vertici: {nodes}"))
         self._view.txt_result1.controls.append(ft.Text(f"Numero di archi: {edges}"))
+        bestArchi = self._model.getBestArchi()
+        for arco in bestArchi:
+            self._view.txt_result1.controls.append(ft.Text(f"{arco[0].id} -> {arco[1].id} | weight = {arco[2]["weight"]}"))
         self._view.btn_path.disabled = False
         self._view.update_page()
 
