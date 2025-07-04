@@ -21,15 +21,16 @@ class Model:
             self._idMap[node.id] = node
         self._graph.add_nodes_from(nodes)
 
+
         for u in self._graph.nodes:
             for v in self._graph.nodes:
-                if u.id < v.id:
-                    if u.state == v.state:
-                        peso = abs(u.longitude - v.longitude)
-                        if u.longitude < v.longitude:
-                            self._graph.add_edge(u, v, weight=peso)
-                        else:
-                            self._graph.add_edge(v, u, weight=peso)
+                if u.id < v.id and u.state == v.state:
+                    if u.longitude < v.longitude:
+                        peso = v.longitude - u.longitude
+                        self._graph.add_edge(u, v, weight=peso)
+                    else:
+                        peso = u.longitude - v.longitude
+                        self._graph.add_edge(v, u, weight=peso)
 
         return self._graph.number_of_nodes(), self._graph.number_of_edges()
 
