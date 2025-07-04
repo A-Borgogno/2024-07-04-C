@@ -48,4 +48,10 @@ class Controller:
 
 
     def handle_path(self, e):
-        pass
+        self._view.txt_result2.controls.clear()
+        path, score = self._model.getBestPath()
+        self._view.txt_result2.controls.append(ft.Text("Trovato percorso ottimo"))
+        for node in path:
+            self._view.txt_result2.controls.append(ft.Text(node))
+        self._view.txt_result2.controls.append(ft.Text(f"Punteggio cammino: {score}"))
+        self._view.update_page()
