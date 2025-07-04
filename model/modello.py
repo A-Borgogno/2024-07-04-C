@@ -65,6 +65,8 @@ class Model:
                     parziale.pop()
 
     def _nodoAmmissibile(self, parziale, n: Sighting):
+        if n.duration <= parziale[-1].duration:
+            return False
         if len(parziale) < 3:
             return True
         if parziale[-3].datetime.month == parziale[-2].datetime.month == parziale[-1].datetime.month:
